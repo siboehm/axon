@@ -1170,6 +1170,15 @@ func (ly *Layer) PoolGiFmSpikes(ctime *Time) {
 	}
 }
 
+var result32 float32
+var result32i int32
+
+func PrefetchNeuron(nrn *Neuron) {
+	result32i += nrn.LayIdx + nrn.SubPool
+	// result32 += nrn.Spike + nrn.Spiked + nrn.Act + nrn.ActInt + nrn.ActM + nrn.ActP + nrn.Ext + nrn.Target + nrn.GeSyn + nrn.Ge + nrn.GiSyn + nrn.Gi + nrn.Gk + nrn.Inet + nrn.Vm + nrn.VmDend + nrn.CaSyn + nrn.CaSpkM + nrn.CaSpkP + nrn.CaSpkD + nrn.CaLrn + nrn.CaM + nrn.CaP + nrn.CaD + nrn.CaDiff + nrn.SpkMaxCa + nrn.SpkMax + nrn.SpkPrv + nrn.SpkSt1 + nrn.SpkSt2 + nrn.RLrate + nrn.ActAvg + nrn.AvgPct + nrn.TrgAvg + nrn.DTrgAvg + nrn.AvgDif + nrn.ISI + nrn.ISIAvg + nrn.GeNoiseP + nrn.GeNoise + nrn.GiNoiseP + nrn.GiNoise + nrn.GeM + nrn.GiM + nrn.MahpN + nrn.SahpCa + nrn.SahpN + nrn.GknaMed + nrn.GknaSlow + nrn.GnmdaSyn + nrn.Gnmda + nrn.GnmdaLrn + nrn.NmdaCa + nrn.SnmdaO + nrn.SnmdaI + nrn.GgabaB + nrn.GABAB + nrn.GABABx + nrn.Gvgcc + nrn.VgccM + nrn.VgccH + nrn.VgccCa + nrn.VgccCaInt + nrn.Attn + nrn.GeBase + nrn.GiBase + nrn.GeRaw + nrn.GiRaw + nrn.GeExt + nrn.Gak
+	result32 += nrn.Spike + nrn.CaSyn + nrn.AvgPct + nrn.GnmdaSyn + nrn.GiBase
+}
+
 // CycleNeuron does one cycle (msec) of updating at the neuron level
 func (ly *Layer) CycleNeuron(ni int, nrn *Neuron, ctime *Time) {
 	ly.AxonLay.GInteg(ni, nrn, ctime)
