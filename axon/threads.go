@@ -93,20 +93,6 @@ func (nt *NetworkBase) SendSpikeFun(fun func(ly AxonLayer), funame string) {
 	nt.LayerMapParallel(fun, funame, nt.Threads.SendSpike)
 }
 
-func (nt *NetworkBase) GFmSpikesFun(fun func(prjn AxonPrjn), funame string) {
-	if nt.Threads.SendSpike == 1 {
-		nt.PrjnMapSeq(fun, funame)
-	} else {
-		// GFmSpikes is defined on the prjn, but runs into raceconditions if
-		// it's multithreaded across prjns, so we multithread across layers instead
-		nt.LayerMapParallel(func(ly AxonLayer) {
-			for _, pj := range ly.AsAxon().RcvPrjns {
-				fun(pj)
-			}
-		}, funame, nt.Threads.SendSpike)
-	}
-}
-
 //////////////////////////////////////////////////////////////////////////////////////
 //  Generic parallel map functions
 

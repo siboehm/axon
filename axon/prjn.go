@@ -734,6 +734,7 @@ func (pj *Prjn) GFmSpikes(ctime *Time) {
 		pj.Gidx.Shift(1) // rotate buffer
 		return
 	}
+	// TODO: Race condition if one layer has multiple incoming prjns (common)
 	lpl := &rlay.Pools[0]
 	if len(rlay.Pools) == 1 {
 		lpl.Inhib.FFsRaw += pj.PIBuf[zi]
