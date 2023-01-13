@@ -30,7 +30,7 @@ var writeStats = flag.Bool("writestats", false, "whether to write network stats 
 
 func BenchmarkBenchNetFull(b *testing.B) {
 	if *verbose {
-		fmt.Printf("Running bench with: %d neuronThreads, %d sendSpikeThreads, %d synCaThreads, %d epochs, %d pats, %d units\n", *threadsNeuron, *threadsSendSpike, *threadsSynCa, *numEpochs, *numPats, *numUnits)
+		fmt.Printf("Running bench with: %d epochs, %d pats, %d units\n", *numEpochs, *numPats, *numUnits)
 	}
 
 	rand.Seed(42)

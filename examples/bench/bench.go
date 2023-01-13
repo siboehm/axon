@@ -94,16 +94,17 @@ func ConfigNet(net *axon.Network, threadNeuron, threadSendSpike, threadSynCa,
 		panic(err)
 	}
 
-	if threadNeuron == 0 && threadSendSpike == 0 && threadSynCa == 0 {
-		fmt.Print("Threading: using default values\n")
-	} else {
+	if !(threadNeuron == 0 && threadSendSpike == 0 && threadSynCa == 0) {
 		// override defaults: neurons, sendSpike, synCa
 		err := net.Threads.Set(threadNeuron, threadSendSpike, threadSynCa)
 		if err != nil {
 			panic(err)
 		}
 	}
-	// override defaults: neurons, sendSpike, synCa, learn
+	if verbose {
+		fmt.Printf("Threading: %d neuronThreads, %d sendSpikeThreads, %d synCaThreads\n",
+			net.Threads.Neurons, net.Threads.SendSpike, net.Threads.SynCa)
+	}
 
 	net.InitWts()
 }
