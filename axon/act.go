@@ -786,7 +786,7 @@ func (ac *ActParams) VmFmG(nrn *Neuron) {
 	var nvm, inet, expi float32
 	if updtVm {
 		ac.VmInteg(nrn.Vm, ac.Dt.VmDt, ge, 1, gi, gk, &nvm, &inet)
-		if updtVm && ac.Spike.Exp.IsTrue() { // add spike current if relevant
+		if ac.Spike.Exp.IsTrue() { // add spike current if relevant
 			exVm := 0.5 * (nvm + nrn.Vm) // midpoint for this
 			expi = ac.Gbar.L * ac.Spike.ExpSlope *
 				mat32.FastExp((exVm-ac.Spike.Thr)/ac.Spike.ExpSlope)
